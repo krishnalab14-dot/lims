@@ -231,3 +231,18 @@ Database tables:
 - `roles`
 - `permissions`
 - `role_permissions`
+
+
+## Audit & Logs Module
+
+Features implemented in scaffold:
+
+- User activity logs
+- Data change tracking
+- Login/logout history
+- Critical operation logging
+
+Database tables:
+
+- `audit_logs`
+- `activity_logs`

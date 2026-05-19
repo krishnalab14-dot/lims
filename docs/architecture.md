@@ -103,6 +103,11 @@
 - Role assignment and permission mapping
 - Login activity tracking
 
+### K. Audit & Logs Module
+- User activity logs and login/logout history
+- Data change tracking (before/after payloads)
+- Critical operation logging
+
 ## 4. Roles Baseline
 
 1. Super Admin — full system access
