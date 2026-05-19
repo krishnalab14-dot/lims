@@ -213,3 +213,21 @@ Database tables:
 - `suppliers`
 - `purchases`
 - `stock_transactions`
+
+
+## User Management Module
+
+Features implemented in scaffold:
+
+- User creation
+- Role assignment
+- Permission mapping
+- User status
+- Login activity tracking
+
+Database tables:
+
+- `users`
+- `roles`
+- `permissions`
+- `role_permissions`

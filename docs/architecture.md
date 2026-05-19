@@ -98,6 +98,11 @@
 - Stock inward/outward transactions
 - Stock reporting views
 
+### J. User Management Module
+- User creation and status management
+- Role assignment and permission mapping
+- Login activity tracking
+
 ## 4. Roles Baseline
 
 1. Super Admin — full system access
