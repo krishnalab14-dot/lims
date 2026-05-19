@@ -69,6 +69,14 @@
 - Test pricing management
 - Department management
 
+### F. Sample Collection Module
+- Sample collection entry workflow
+- Barcode generation and sample tracking
+- Collection status management
+- Sample rejection handling with reason capture
+- Sample transfer status updates
+- Collection date/time logging
+
 ## 4. Roles Baseline
 
 1. Super Admin — full system access

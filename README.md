@@ -131,3 +131,21 @@ Database tables:
 - `tests`
 - `test_parameters`
 - `departments`
+
+
+## Sample Collection Module
+
+Features implemented in scaffold:
+
+- Sample collection entry
+- Barcode generation
+- Sample tracking
+- Collection status
+- Sample rejection handling
+- Sample transfer status
+- Collection date/time
+
+Database tables:
+
+- `samples`
+- `sample_collections`
