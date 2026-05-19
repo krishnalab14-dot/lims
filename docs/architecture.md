@@ -91,6 +91,13 @@
 - Report history access and delivery tracking
 - Share channels: Email and WhatsApp
 
+### I. Inventory & Stock Management Module
+- Reagent stock and batch management
+- Supplier master and purchase entries
+- Expiry tracking and low-stock alerts
+- Stock inward/outward transactions
+- Stock reporting views
+
 ## 4. Roles Baseline
 
 1. Super Admin — full system access

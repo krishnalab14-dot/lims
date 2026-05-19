@@ -192,3 +192,24 @@ Features implemented in scaffold:
 - Print/download
 - Email report
 - WhatsApp sharing support
+
+
+## Inventory & Stock Management Module
+
+Features implemented in scaffold:
+
+- Reagent stock management
+- Supplier management
+- Purchase entries
+- Expiry tracking
+- Low stock alerts
+- Batch tracking
+- Stock inward/outward
+- Stock reports
+
+Database tables:
+
+- `inventory`
+- `suppliers`
+- `purchases`
+- `stock_transactions`
