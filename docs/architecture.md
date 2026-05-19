@@ -152,3 +152,13 @@
 - Centralized error handling.
 - Health checks and readiness probes.
 
+
+## 8. Security Middleware & Hardening Scaffolds
+
+- CSRF token verification middleware scaffold.
+- Authentication and authorization middleware scaffolds for protected routes.
+- Rate limiting middleware scaffold for brute-force and abuse control.
+- Input validation helper utilities for API payload checks.
+- Password security helper (scrypt hashing + timing-safe verification).
+- Query-safety helper for parameterized SQL execution patterns.
+- XSS sanitization helper for safe HTML rendering contexts.

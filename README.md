@@ -277,3 +277,17 @@ Database tables:
 - Dark/light mode toggle placeholder
 - Toast notification scaffold
 - Modal-based form scaffold
+
+
+## Security Controls Scaffold
+
+Implemented scaffolds for required security controls:
+
+- CSRF protection middleware stub
+- SQL injection prevention helper via parameterized-query wrapper
+- XSS prevention helper via HTML escaping sanitizer
+- Authentication middleware stub
+- Authorization middleware stub
+- Rate limiting middleware stub
+- Input validation helpers
+- Secure password storage helpers (scrypt + salt + timing-safe verify)
