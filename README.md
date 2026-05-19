@@ -110,3 +110,24 @@ Database tables:
 - `invoices`
 - `invoice_items`
 - `payments`
+
+
+## Test Management Module
+
+Features implemented in scaffold:
+
+- Test category management
+- Test creation
+- Test parameters
+- Reference ranges
+- Units
+- Normal values
+- Test pricing
+- Department management
+
+Database tables:
+
+- `test_categories`
+- `tests`
+- `test_parameters`
+- `departments`

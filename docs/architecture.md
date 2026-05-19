@@ -61,6 +61,14 @@
 - Invoice print-ready data generation
 - Daily collection reports
 
+### E. Test Management Module
+- Test category management
+- Test creation and test catalog maintenance
+- Parameter definition with units and reference ranges
+- Normal value capture
+- Test pricing management
+- Department management
+
 ## 4. Roles Baseline
 
 1. Super Admin — full system access
