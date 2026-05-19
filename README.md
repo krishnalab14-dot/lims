@@ -67,3 +67,25 @@ Dashboard includes the following widgets and analytics blocks:
 - Inventory alerts
 - Recent activities
 - Graphs and statistics
+
+
+## Patient Registration Module
+
+Features implemented in scaffold:
+
+- Auto-generated patient ID
+- Patient registration form
+- Edit/update patient details
+- Patient search
+- Visit history
+- Gender, DOB, age calculation
+- Doctor reference
+- Mobile number
+- Address
+- Emergency contact
+- Barcode/QR support
+
+Database tables:
+
+- `patients`
+- `patient_visits`
