@@ -51,6 +51,16 @@
   - role and permission changes
   - critical record edits/deletes
 
+
+### D. Billing & Transactions Module
+- Test/package billing
+- Invoice generation
+- GST/tax and discount handling
+- Payment collection (cash/card/UPI/insurance)
+- Payment status tracking and refund handling
+- Invoice print-ready data generation
+- Daily collection reports
+
 ## 4. Roles Baseline
 
 1. Super Admin — full system access

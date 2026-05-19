@@ -89,3 +89,24 @@ Database tables:
 
 - `patients`
 - `patient_visits`
+
+
+## Billing & Transactions Module
+
+Features implemented in scaffold:
+
+- Test/package billing
+- Invoice generation
+- GST/tax support
+- Discount handling
+- Payment methods: Cash, Card, UPI, Insurance
+- Payment status tracking
+- Refund handling
+- Invoice printing flow (scaffold note)
+- Daily collection report
+
+Database tables:
+
+- `invoices`
+- `invoice_items`
+- `payments`
