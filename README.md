@@ -291,3 +291,15 @@ Implemented scaffolds for required security controls:
 - Rate limiting middleware stub
 - Input validation helpers
 - Secure password storage helpers (scrypt + salt + timing-safe verify)
+
+
+## Code Structure Scaffold
+
+The required code-structure baseline has been added:
+
+- `app/Http`, `app/Models`, `app/Services`, `app/Repositories`, `app/Traits`, `app/Helpers`, `app/Policies`, `app/Notifications`
+- `database/migrations`, `database/seeders`, `database/factories`
+- `resources/views`, `resources/js`, `resources/css`
+- `routes`, `storage`
+
+See `docs/code-structure.md` for details.
