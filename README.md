@@ -303,3 +303,18 @@ The required code-structure baseline has been added:
 - `routes`, `storage`
 
 See `docs/code-structure.md` for details.
+
+
+## Laravel Development Standards Scaffold
+
+Implemented baseline examples for required standards:
+
+- Eloquent ORM model example: `app/Models/Patient.php`
+- Laravel migration example: `database/migrations/2026_05_19_000001_create_patients_table.php`
+- Form Request validation: `app/Http/Requests/StorePatientRequest.php`
+- Resource Controller pattern: `app/Http/Controllers/Api/PatientController.php` + `routes/api.php`
+- API Resource serializer: `app/Http/Resources/PatientResource.php`
+- Service class layer: `app/Services/PatientService.php`
+- Repository interface + implementation: `app/Repositories/Contracts/PatientRepositoryInterface.php` and `app/Repositories/Eloquent/PatientRepository.php`
+- Reusable Blade component: `app/View/Components/PageHeader.php` + `resources/views/components/page-header.blade.php`
+- Proper naming conventions applied (singular model, *Controller, *Request, *Resource, *Service, *RepositoryInterface).
