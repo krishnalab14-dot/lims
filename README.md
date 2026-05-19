@@ -263,3 +263,17 @@ Features implemented in scaffold:
 Database tables:
 
 - `settings`
+
+
+## UI/UX Scaffold Coverage
+
+- Modern clean dashboard shell
+- Sidebar navigation
+- Mobile-responsive-friendly layout scaffold
+- Global search input scaffold ("Search everywhere")
+- DataTable-style reusable table component
+- Pagination component scaffold
+- Filter bar component scaffold
+- Dark/light mode toggle placeholder
+- Toast notification scaffold
+- Modal-based form scaffold
