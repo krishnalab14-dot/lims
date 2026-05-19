@@ -54,3 +54,16 @@ docs/
    - `pnpm --filter @lims/api dev`
    - `pnpm --filter @lims/web dev`
 
+
+## Dashboard Module
+
+Dashboard includes the following widgets and analytics blocks:
+
+- Daily patient count
+- Pending samples
+- Pending reports
+- Completed reports
+- Revenue summary
+- Inventory alerts
+- Recent activities
+- Graphs and statistics
