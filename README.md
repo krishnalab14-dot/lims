@@ -257,4 +257,9 @@ Features implemented in scaffold:
 - Email settings
 - SMS settings
 - Tax settings
-- Backup setting
+- Backup settings
+
+
+Database tables:
+
+- `settings`
