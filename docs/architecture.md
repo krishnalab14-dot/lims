@@ -108,6 +108,13 @@
 - Data change tracking (before/after payloads)
 - Critical operation logging
 
+### L. Settings Module
+- Lab profile settings
+- Report header/footer template settings
+- Email and SMS gateway settings
+- Tax configuration settings
+- Backup policy settings
+
 ## 4. Roles Baseline
 
 1. Super Admin — full system access

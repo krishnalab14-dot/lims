@@ -246,3 +246,15 @@ Database tables:
 
 - `audit_logs`
 - `activity_logs`
+
+
+## Settings Module
+
+Features implemented in scaffold:
+
+- Lab settings
+- Report header/footer
+- Email settings
+- SMS settings
+- Tax settings
+- Backup setting
