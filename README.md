@@ -177,3 +177,18 @@ Database tables:
 - `test_results`
 - `result_parameters`
 - `result_approvals`
+
+
+## Report Printing Module
+
+Features implemented in scaffold:
+
+- PDF report generation
+- Hospital/lab branding
+- Logo support
+- Doctor signature
+- QR code verification
+- Report history
+- Print/download
+- Email report
+- WhatsApp sharing support

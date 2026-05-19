@@ -84,6 +84,13 @@
 - Doctor verification and approval workflow
 - Workflow states: Pending, In Progress, Completed, Verified, Approved
 
+### H. Report Printing Module
+- PDF report generation and print/download flows
+- Hospital/lab branding with logo support
+- Doctor signature and QR verification embedding
+- Report history access and delivery tracking
+- Share channels: Email and WhatsApp
+
 ## 4. Roles Baseline
 
 1. Super Admin — full system access
