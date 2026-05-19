@@ -149,3 +149,31 @@ Database tables:
 
 - `samples`
 - `sample_collections`
+
+
+## Laboratory Result Entry Module
+
+Features implemented in scaffold:
+
+- Technician result entry
+- Parameter-wise result entry
+- Validation rules
+- Auto abnormal flag
+- Approval workflow
+- Doctor verification
+- Remarks
+- Attachments support
+
+Workflow states:
+
+- Pending
+- In Progress
+- Completed
+- Verified
+- Approved
+
+Database tables:
+
+- `test_results`
+- `result_parameters`
+- `result_approvals`

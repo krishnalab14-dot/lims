@@ -77,6 +77,13 @@
 - Sample transfer status updates
 - Collection date/time logging
 
+### G. Laboratory Result Entry Module
+- Technician result entry and parameter-wise recording
+- Validation rules and auto abnormal flagging
+- Remarks and attachment support
+- Doctor verification and approval workflow
+- Workflow states: Pending, In Progress, Completed, Verified, Approved
+
 ## 4. Roles Baseline
 
 1. Super Admin — full system access
