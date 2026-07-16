@@ -40,7 +40,6 @@ router.post('/refresh', async (req: AuthRequest, res: Response) => {
 });
 
 router.post('/logout', authMiddleware, (req: AuthRequest, res: Response) => {
-  // Token invalidation can be handled by client-side removal
   res.json({ message: 'Logged out successfully' });
 });
 

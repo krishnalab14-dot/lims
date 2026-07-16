@@ -17,7 +17,6 @@ dotenv.config();
 const app: Express = express();
 const PORT = process.env.PORT || 3001;
 
-// Middleware
 app.use(helmet());
 app.use(compression());
 app.use(
@@ -30,31 +29,25 @@ app.use(morgan('combined', { stream: { write: (msg) => logger.info(msg) } }));
 app.use(express.json({ limit: process.env.MAX_REQUEST_SIZE || '10mb' }));
 app.use(express.urlencoded({ limit: process.env.MAX_REQUEST_SIZE || '10mb', extended: true }));
 
-// Rate limiting
 if (process.env.ENABLE_RATE_LIMITING !== 'false') {
   app.use('/api/', apiLimiter);
 }
 
-// Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/organizations/:orgId/labs/:labId/samples', sampleRoutes);
 app.use('/api/v1/organizations/:orgId/labs/:labId/tests', testRoutes);
 app.use('/api/v1/organizations/:orgId/labs/:labId/dashboard', dashboardRoutes);
 
-// Health check
 app.get('/api/v1/health', (req: Request, res: Response) => {
   res.json({ status: 'OK', timestamp: new Date() });
 });
 
-// 404 handler
 app.use((req: Request, res: Response) => {
   res.status(404).json({ error: 'Not found' });
 });
 
-// Error handler
 app.use(errorHandler);
 
-// Graceful shutdown
 const gracefulShutdown = () => {
   logger.info('Graceful shutdown initiated');
   process.exit(0);
@@ -63,7 +56,6 @@ const gracefulShutdown = () => {
 process.on('SIGTERM', gracefulShutdown);
 process.on('SIGINT', gracefulShutdown);
 
-// Start server
 app.listen(PORT, () => {
   logger.info(`LIS Backend running on port ${PORT}`);
 });

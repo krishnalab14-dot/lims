@@ -23,7 +23,6 @@ export const sampleService = {
       include: { tests: true, patient: true },
     });
 
-    // Invalidate cache
     await redis.del(cacheKeys.DASHBOARD_STATS(labId));
 
     return sample;
@@ -68,7 +67,6 @@ export const sampleService = {
       include: { tests: true, patient: true },
     });
 
-    // Invalidate cache
     await redis.del(cacheKeys.DASHBOARD_STATS(sample.labId));
 
     return updated;
