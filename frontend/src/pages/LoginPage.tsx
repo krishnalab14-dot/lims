@@ -66,7 +66,7 @@ export const LoginPage: React.FC = () => {
         </form>
 
         <p className="text-center text-sm text-gray-600 mt-4">
-          Demo: admin@lab.com / password123
+          Demo: admin@lab.com / admin123
         </p>
       </div>
     </div>
