@@ -1,0 +1,338 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id        String @id @default(cuid())
+  name      String @unique
+  code      String @unique
+  address   String?
+  phone     String?
+  email     String?
+  logo      String?
+  isActive  Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  labs      Lab[]
+  patients  Patient[]
+  auditLogs AuditLog[]
+
+  @@index([code])
+  @@index([createdAt])
+}
+
+model Lab {
+  id             String @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  name           String
+  code           String
+  isActive       Boolean @default(true)
+  config         Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  users         User[]
+  samples       Sample[]
+  workflows     LabWorkflow[]
+  testGroups    TestGroup[]
+  reportTemplates ReportTemplate[]
+  auditLogs     AuditLog[]
+
+  @@unique([organizationId, code])
+  @@index([organizationId])
+  @@index([code])
+  @@index([createdAt])
+}
+
+enum Role {
+  SUPER_ADMIN
+  LAB_ADMIN
+  MANAGER
+  PATHOLOGIST
+  TECHNICIAN
+  RECEPTIONIST
+  VIEWER
+}
+
+model User {
+  id        String @id @default(cuid())
+  email     String @unique
+  password  String
+  firstName String
+  lastName  String
+  labId     String?
+  lab       Lab? @relation(fields: [labId], references: [id], onDelete: SetNull)
+  role      Role @default(TECHNICIAN)
+  isActive  Boolean @default(true)
+  lastLogin DateTime?
+  preferences Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sampleAssignments Sample[] @relation("AssignedTechnician")
+  auditLogs         AuditLog[]
+
+  @@index([email])
+  @@index([labId])
+  @@index([role])
+  @@index([createdAt])
+}
+
+model RefreshToken {
+  id        String @id @default(cuid())
+  userId    String
+  token     String @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model Patient {
+  id              String @id @default(cuid())
+  organizationId  String
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  mrn             String
+  firstName       String
+  lastName        String
+  dateOfBirth     DateTime
+  gender          String
+  phone           String?
+  email           String?
+  address         String?
+  city            String?
+  state           String?
+  zipCode         String?
+  insuranceId     String?
+  referringDoctor String?
+  notes           String?
+  isActive        Boolean @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  samples   Sample[]
+  auditLogs AuditLog[]
+
+  @@unique([organizationId, mrn])
+  @@index([organizationId])
+  @@index([mrn])
+  @@index([email])
+  @@index([createdAt])
+}
+
+enum SampleStatus {
+  PENDING_COLLECTION
+  RECEIVED
+  PROCESSING
+  COMPLETED
+  VERIFIED
+  RELEASED
+  REJECTED
+  CANCELLED
+}
+
+enum SampleType {
+  BLOOD
+  URINE
+  SERUM
+  PLASMA
+  CSF
+  STOOL
+  OTHER
+}
+
+model Sample {
+  id               String @id @default(cuid())
+  labId            String
+  lab              Lab @relation(fields: [labId], references: [id], onDelete: Restrict)
+  sampleId         String
+  patientId        String
+  patient          Patient @relation(fields: [patientId], references: [id], onDelete: Restrict)
+  sampleType       SampleType
+  status           SampleStatus @default(PENDING_COLLECTION)
+  receivedDate     DateTime?
+  processedDate    DateTime?
+  completedDate    DateTime?
+  collectionDate   DateTime @default(now())
+  assignedTo       String?
+  assignedUser     User? @relation("AssignedTechnician", fields: [assignedTo], references: [id], onDelete: SetNull)
+  notes            String?
+  priority         Int @default(0)
+  rejectionReason  String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  tests             SampleTest[]
+  auditLogs         AuditLog[]
+
+  @@unique([labId, sampleId])
+  @@index([labId])
+  @@index([sampleId])
+  @@index([patientId])
+  @@index([status])
+  @@index([createdAt])
+  @@index([assignedTo])
+}
+
+model TestGroup {
+  id      String @id @default(cuid())
+  labId   String
+  lab     Lab @relation(fields: [labId], references: [id], onDelete: Cascade)
+  name    String
+  code    String
+  order   Int @default(0)
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tests   Test[]
+
+  @@unique([labId, code])
+  @@index([labId])
+  @@index([order])
+}
+
+model Test {
+  id           String @id @default(cuid())
+  testGroupId  String?
+  testGroup    TestGroup? @relation(fields: [testGroupId], references: [id], onDelete: SetNull)
+  code         String
+  name         String
+  category     String
+  description  String?
+  price        Float @default(0)
+  normalRange  String?
+  unit         String?
+  isActive     Boolean @default(true)
+  order        Int @default(0)
+  resultForm   Json?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  sampleTests  SampleTest[]
+
+  @@unique([code])
+  @@index([testGroupId])
+  @@index([code])
+  @@index([isActive])
+}
+
+model SampleTest {
+  id        String @id @default(cuid())
+  sampleId  String
+  sample    Sample @relation(fields: [sampleId], references: [id], onDelete: Cascade)
+  testId    String
+  test      Test @relation(fields: [testId], references: [id], onDelete: Restrict)
+  status    SampleStatus @default(PENDING_COLLECTION)
+  results   Json?
+  verifiedAt DateTime?
+  verifiedBy String?
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([sampleId, testId])
+  @@index([sampleId])
+  @@index([testId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model LabWorkflow {
+  id      String @id @default(cuid())
+  labId   String
+  lab     Lab @relation(fields: [labId], references: [id], onDelete: Cascade)
+  status  String
+  allowedTransitions Json
+  requiresApproval Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([labId, status])
+  @@index([labId])
+}
+
+model ReportTemplate {
+  id      String @id @default(cuid())
+  labId   String
+  lab     Lab @relation(fields: [labId], references: [id], onDelete: Cascade)
+  name    String
+  code    String
+  template String
+  isDefault Boolean @default(false)
+  isActive  Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([labId, code])
+  @@index([labId])
+  @@index([isDefault])
+}
+
+enum AuditAction {
+  CREATE
+  READ
+  UPDATE
+  DELETE
+  LOGIN
+  LOGOUT
+  EXPORT
+  VERIFY
+  REJECT
+}
+
+model AuditLog {
+  id            String @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  labId         String?
+  lab           Lab? @relation(fields: [labId], references: [id], onDelete: SetNull)
+  userId        String
+  user          User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  action        AuditAction
+  entityType    String
+  entityId      String?
+  details       Json?
+  ipAddress     String?
+  userAgent     String?
+  patientId     String?
+  patient       Patient? @relation(fields: [patientId], references: [id], onDelete: SetNull)
+  sampleId      String?
+  sample        Sample? @relation(fields: [sampleId], references: [id], onDelete: SetNull)
+  createdAt     DateTime @default(now())
+
+  @@index([organizationId])
+  @@index([labId])
+  @@index([userId])
+  @@index([action])
+  @@index([entityType])
+  @@index([createdAt])
+  @@index([patientId])
+  @@index([sampleId])
+}
+
+model DashboardWidget {
+  id        String @id @default(cuid())
+  labId     String
+  role      Role
+  name      String
+  title     String
+  type      String
+  order     Int @default(0)
+  isActive  Boolean @default(true)
+  config    Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([labId, role, name])
+  @@index([labId])
+  @@index([role])
+}
